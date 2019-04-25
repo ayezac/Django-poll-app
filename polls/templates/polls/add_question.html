@@ -1,0 +1,14 @@
+
+<h1>Add a poll</h1>
+
+
+ <form id = "question_form" method = "POST" action="{% url 'polls:save_poll' %}">
+    {% csrf_token %}
+
+    <table>
+        {{ form }}
+       
+    </table>
+
+    <input type ="submit" name ="submit" value = "Create Question" />
+</form> 

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+Hi {{user.username}} 
+<br/>
+<br/>
+
+<a href = "{%url 'polls:index' %}">Go to the polls</a>
+
+<p><a href = "{%url 'logout' %}"> Logout </p>
+
+{% else %}
+<p>You are not logged in</p>
+<a href = "{%url 'login' %}">Login</a>
+
+<br/>
+<p>New user?</p>
+<a href = "{% url 'polls:signup' %}">Sign up here</a>
+
+{% endif %}
+
+
+{% endblock %}
+

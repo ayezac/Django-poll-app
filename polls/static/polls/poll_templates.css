@@ -1,0 +1,51 @@
+#title{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-bottom: 3px solid black;
+    padding: 5px;
+    text-align: center;
+
+}
+
+#home{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    color: white;
+    background-color: #048F87;
+    padding: 10px;
+    width: 100%;
+}
+
+#home:hover {
+    font-size: 18px;
+}
+
+ol {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    padding: 30px;
+    background-color:#048F87;
+    color: white;
+   
+}
+
+.links {
+    text-decoration: none;
+    color: white;
+}
+.links:hover {
+    font-size: 23px;
+}
+
+#add-poll {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+   
+
+}
