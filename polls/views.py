@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.urls import reverse, reverse_lazy
 from .models import Question, Choice
@@ -8,12 +8,13 @@ from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .forms import PollForm
-from django.forms.formsets import formset_factory
 from django.utils import timezone
+from .serializers import QuestionSerializer
+from rest_framework import generics
 
 @login_required
 def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    latest_question_list = Question.objects.order_by('-pub_date')
     context = {'latest_question_list': latest_question_list, }
 
     return render(request, 'polls/index.html', context)
@@ -37,7 +38,7 @@ def detail(request, question_id):
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+        selected_choice = question.choices.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         return render(request, 'polls/details.html', {'question': question, 'error_message': "You didn't select a choice."})
     else:
@@ -79,8 +80,20 @@ def save_poll(request):
    
     newQuestion.save()
    
-    newQuestion.choice_set.create(choice_text=request.POST['choice_1'], votes =0)
-    newQuestion.choice_set.create(choice_text=request.POST['choice_2'], votes =0)
-    newQuestion.choice_set.create(choice_text=request.POST['choice_3'], votes =0)
+    newQuestion.choices.create(choice_text=request.POST['choice_1'], votes =0)
+    newQuestion.choices.create(choice_text=request.POST['choice_2'], votes =0)
+    newQuestion.choices.create(choice_text=request.POST['choice_3'], votes =0)
     
     return HttpResponseRedirect(reverse("polls:index"))
+
+class QuestionList(generics.ListCreateAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+
+class QuestionDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset= Question.objects.all()
+    serializer_class = QuestionSerializer
+
+
+
+        

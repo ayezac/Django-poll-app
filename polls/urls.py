@@ -9,5 +9,7 @@ urlpatterns = [
     path('<int:question_id>/vote/', views.vote, name ='vote'),
     path('signup/', views.SignUp.as_view(), name = 'signup'),
     path('add_question/', views.add_question, name = 'add_question' ),
-    path('save_poll/', views.save_poll, name='save_poll')
+    path('save_poll/', views.save_poll, name='save_poll'),
+    path('questions/', views.QuestionList.as_view()),
 ]
+    
