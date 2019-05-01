@@ -9,7 +9,6 @@ class PollForm(forms.Form):
     choice_2= forms.CharField(label ='Your second choice')
     choice_3= forms.CharField(label ='Your third choice')
 
-
-            
+   
 
 

@@ -2,7 +2,7 @@
 <h1>Add a poll</h1>
 
 
- <form id = "question_form" method = "POST" action="{% url 'polls:save_poll' %}">
+ <form id = "question_form" method = "POST" action="{% url 'polls:add_question' %}">
     {% csrf_token %}
 
     <table>
